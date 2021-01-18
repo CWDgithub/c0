@@ -10,10 +10,10 @@ import java.io.*;
 
 public class App {
     public static void main(String[] args) {
-        var filename = args[0];
-        var tok = filename.split("\\.");
+        String filename = args[0];
+        String []tok = filename.split("\\.");
         if (!tok[1].equals("c0")) {
-            System.err.printf("unrecognized extension: %s\n", tok[1]);
+            System.err.printf("wrong extension: %s\n", tok[1]);
             System.exit(1);
         }
         var outFileName = tok[0].concat(".o0");

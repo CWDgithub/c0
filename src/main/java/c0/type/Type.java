@@ -1,9 +1,5 @@
 package c0.type;
 
-
-import lombok.Getter;
-
-@Getter
 public class Type {
     TypeVal type;
 
@@ -16,8 +12,12 @@ public class Type {
             case "int" -> TypeVal.UINT;
             case "void" -> TypeVal.VOID;
             case "double" -> TypeVal.DOUBLE;
-            default -> throw new RuntimeException("invalid type");
+            default -> throw new RuntimeException("wrong type");
         };
+    }
+
+    public TypeVal getType(){
+        return this.type;
     }
 
     @Override
@@ -35,7 +35,9 @@ public class Type {
 
     @Override
     public String toString() {
-        return String.format("Type(%s)", type);
+        String stringBuilder = "Type" +
+                "(" + type + ")";
+        return stringBuilder;
     }
 
 }

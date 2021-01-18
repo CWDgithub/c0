@@ -14,13 +14,14 @@ import java.util.function.Supplier;
 public class Lexer extends RichIterator<Token> {
     private final CharIterator charIter;
     private final LinkedHashMap<Predicate<Character>, Supplier<Token>> actions;
+    int lookAhead;
 
     public Lexer(CharIterator charIter) {
         this.charIter = charIter;
         actions = new LinkedHashMap<>(Map.of(
-                Character::isWhitespace, this::skipSpace,
-                this::isUnderlineOrLetter, this::lexIdentOrKeyword,
-                Character::isDigit, this::lexUIntOrDouble,
+                Character::isWhitespace, this::ignoreSpace,
+                this::isUdlineorLetter, this::lexIDorKey,
+                Character::isDigit, this::lexIntorDb,
                 ch -> ch.equals('"'), this::lexString,
                 ch -> ch.equals('\''), this::lexChar,
                 this::isOperator, this::lexOperatorOrComment
@@ -37,27 +38,33 @@ public class Lexer extends RichIterator<Token> {
                 return Optional.of(action.getValue().get());
             }
         }
-        throw new RuntimeException("unrecognized character");
+        throw new RuntimeException("wrong character");
     }
 
-    private Token skipSpace() {
+    private Token ignoreSpace() {
         while (charIter.check(Character::isWhitespace)) {
             charIter.next();
         }
         return getNext().orElseThrow(NonReadableChannelException::new);
     }
 
-    private boolean isUnderlineOrLetter(Character ch) {
-        return Character.isLetter(ch) || ch == '_';
+    private boolean isUdlineorLetter(Character ch) {
+        if(Character.isLetter(ch)||ch=='_'){
+            return true;
+        }
+        return false;
     }
 
-    private boolean isUnderlineOrLetterOrDigit(Character ch) {
-        return Character.isDigit(ch) || isUnderlineOrLetter(ch);
+    private boolean isUdlineorLetterOrDigit(Character ch) {
+        if(Character.isDigit(ch)||isUdlineorLetter(ch)){
+            return true;
+        }
+        return false;
     }
 
-    private Token lexIdentOrKeyword() {
-        var sb = new StringBuilder();
-        while (charIter.check(this::isUnderlineOrLetterOrDigit)) {
+    private Token lexIDorKey() {
+        StringBuilder sb = new StringBuilder();
+        while (charIter.check(this::isUdlineorLetterOrDigit)) {
             sb.append(charIter.next());
         }
         var value = sb.toString();
@@ -76,8 +83,8 @@ public class Lexer extends RichIterator<Token> {
         };
     }
 
-    private Token lexUIntOrDouble() {
-        var sb = new StringBuilder();
+    private Token lexIntorDb() {
+        StringBuilder sb = new StringBuilder();
         while (charIter.check(Character::isDigit)) {
             sb.append(charIter.next());
         }
@@ -98,18 +105,18 @@ public class Lexer extends RichIterator<Token> {
                         }
                         return new Token(TokenType.DOUBLE_LITERAL, sb.toString());
                     } else {
-                        throw new RuntimeException("invalid double");
+                        throw new RuntimeException("wrong double");
                     }
                 }
                 return new Token(TokenType.DOUBLE_LITERAL, sb.toString());
             } else {
-                throw new RuntimeException("invalid double");
+                throw new RuntimeException("wrong double");
             }
         }
         return new Token(TokenType.UINT_LITERAL, sb.toString());
     }
 
-    private Optional<Character> lexSpecialOrLiteralChar() {
+    private Optional<Character> lexExtendChar() {
         if (!charIter.hasNext()) {
             return Optional.empty();
         }
@@ -118,16 +125,17 @@ public class Lexer extends RichIterator<Token> {
         }
         if (charIter.test('\\')) {
             if (!charIter.hasNext()) {
-                throw new RuntimeException("lack of special character");
+                throw new RuntimeException("wrong special character");
             }
-            return switch (charIter.next()) {
-                case '\\' -> Optional.of('\\');
-                case '"' -> Optional.of('"');
-                case '\'' -> Optional.of('\'');
-                case 'n' -> Optional.of('\n');
-                case 'r' -> Optional.of('\r');
-                case 't' -> Optional.of('\t');
-                default -> throw new RuntimeException("Unrecognised Character");
+            else
+                return switch (charIter.next()) {
+                    case '\\' -> Optional.of('\\');
+                    case '"' -> Optional.of('"');
+                    case '\'' -> Optional.of('\'');
+                    case 'n' -> Optional.of('\n');
+                    case 'r' -> Optional.of('\r');
+                    case 't' -> Optional.of('\t');
+                    default -> throw new RuntimeException("wrong Character");
             };
         }
         return Optional.of(charIter.next());
@@ -137,7 +145,7 @@ public class Lexer extends RichIterator<Token> {
         var sb = new StringBuilder();
         charIter.expect('"');
         while (true) {
-            var op = lexSpecialOrLiteralChar();
+            var op = lexExtendChar();
             if (op.isEmpty()) {
                 break;
             }
@@ -149,7 +157,7 @@ public class Lexer extends RichIterator<Token> {
 
     private Token lexChar() {
         charIter.expect('\'');
-        var op = lexSpecialOrLiteralChar();
+        var op = lexExtendChar();
         var value = op.orElseThrow(() -> new RuntimeException("char literal must not be empty"));
         charIter.expect('\'');
         return new Token(TokenType.CHAR_LITERAL, Integer.valueOf((int) value).toString());
@@ -209,5 +217,49 @@ public class Lexer extends RichIterator<Token> {
             case ';' -> new Token(TokenType.SEMICOLON);
             default -> throw new UnreachableException();
         };
+    }
+
+    public int lex(){
+        if(lookAhead==-1){
+            return 0;
+        }
+        int i=1;
+        while (i<100){
+            i++;
+        }
+        return i;
+    }
+
+    public boolean match(int token) {
+        if (lookAhead == -1) {
+            lookAhead = lex();
+        }
+
+        return token == lookAhead;
+    }
+
+    public void advance() {
+        lookAhead = lex();
+    }
+
+    public void runLexer() {
+        while (!match(-1)) {
+            System.out.println("Token: " + token() + " ,Symbol: " );
+            advance();
+        }
+    }
+
+    private String token() {
+        String token = switch (lookAhead) {
+            case 0 -> "EOI";
+            case 1 -> "PLUS";
+            case 2 -> "TIMES";
+            case 3 -> "NUM_OR_ID";
+            case 4 -> "SEMI";
+            case 5 -> "LP";
+            case 6 -> "RP";
+            default -> "";
+        };
+        return token;
     }
 }

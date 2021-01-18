@@ -28,13 +28,12 @@ public class Token {
     @Override
     public String toString() {
         StringBuilder stringBuilder=new StringBuilder();
-        stringBuilder.append(tokenType+"(");
+        stringBuilder.append("("+tokenType+",");
         if(value==null){
             stringBuilder.append("");
         }
         else stringBuilder.append(value);
         stringBuilder.append(")");
         return stringBuilder.toString();
-        //return String.format("%s(%s)", tokenType, value == null ? "" : value);
     }
 }
