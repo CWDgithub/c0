@@ -1,6 +1,6 @@
 package c0.Analyser;
 
-import Tokenizer.TokenType;
+import c0.lexer.TokenType;
 
 import java.util.ArrayList;
 

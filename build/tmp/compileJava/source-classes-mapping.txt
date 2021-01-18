@@ -1,5 +1,5 @@
-c0/RichIterator.java
- c0.RichIterator
+c0/entity/StringVariable.java
+ c0.entity.StringVariable
 c0/parser/MiddleCodeItem.java
  c0.parser.MiddleCodeItem
  c0.parser.MiddleCodeItem$CodeType
@@ -13,90 +13,93 @@ c0/Executer/Exe.java
 c0/Executer/Error.java
  c0.Executer.Error
  c0.Executer.Error$ErrCode
-c0/JavaCC/SymbolItem.java
- c0.JavaCC.SymbolItem
- c0.JavaCC.SymbolItem$SymbolType
-c0/lexer/Lex.java
- c0.lexer.Lex
- c0.lexer.Lex$charType
- c0.lexer.Lex$symbol
- c0.lexer.Lex$wordType
+c0/App.java
+ c0.App
+c0/parser/Scope.java
+ c0.parser.Scope
+c0/instruction/Instruction.java
+ c0.instruction.Instruction
+c0/JavaCC/ExError.java
+ c0.JavaCC.ExError
+ c0.JavaCC.ExError$ErrCode
+c0/instruction/FnInstruction.java
+ c0.instruction.FnInstruction
 c0/lexer/CharIterator.java
  c0.lexer.CharIterator
-c0/analyzer/ir/Instruction.java
- c0.analyzer.ir.Instruction
-c0/lexer/Token.java
- c0.lexer.Token
+c0/type/Type.java
+ c0.type.Type
+c0/JavaCC/MiddleCodeItem.java
+ c0.JavaCC.MiddleCodeItem
+ c0.JavaCC.MiddleCodeItem$CodeType
+c0/ast/stmt/EmptyNode.java
+ c0.ast.stmt.EmptyNode
 c0/analyzer/ir/UnCondJump.java
  c0.analyzer.ir.UnCondJump
-c0/Executer/Execute.java
- c0.Executer.Execute
- c0.Executer.Execute$1
- c0.Executer.Execute$Dictate
- c0.Executer.Execute$DictateName
-c0/analyzer/ir/ControlFlow.java
- c0.analyzer.ir.ControlFlow
+c0/ast/expr/AssignNode.java
+ c0.ast.expr.AssignNode
+c0/entity/Entity.java
+ c0.entity.Entity
 c0/type/TypeVal.java
  c0.type.TypeVal
 c0/error/UnreachableException.java
  c0.error.Error
  c0.error.Error$ErrCode
  c0.error.UnreachableException
-c0/lexer/Syn.java
- c0.lexer.Syn
-c0/lexer/Lexer.java
- c0.lexer.Lexer
+c0/ast/expr/BinaryOpNode.java
+ c0.ast.expr.BinaryOpNode
+ c0.ast.expr.BinaryOpNode$1
+c0/ast/stmt/BreakNode.java
+ c0.ast.stmt.BreakNode
+c0/Analyser/Symbol.java
+ c0.Analyser.Symbol
 c0/analyzer/ir/Label.java
  c0.analyzer.ir.Label
-c0/JavaCC/ExError.java
- c0.JavaCC.ExError
- c0.JavaCC.ExError$ErrCode
+c0/ast/expr/CastNode.java
+ c0.ast.expr.CastNode
 c0/parser/ExError.java
  c0.parser.ExError
  c0.parser.ExError$ErrCode
-c0/lexer/TokenType.java
- c0.lexer.TokenType
+c0/ast/AbstractNode.java
+ c0.ast.AbstractNode
 c0/ast/expr/OpVal.java
  c0.ast.expr.OpVal
-c0/analyzer/ir/Jumper.java
- c0.analyzer.ir.Jumper
-c0/lexer/Main.java
- c0.lexer.Main
-c0/analyzer/ir/CondJump.java
- c0.analyzer.ir.CondJump
-c0/JavaCC/MiddleCodeItem.java
- c0.JavaCC.MiddleCodeItem
- c0.JavaCC.MiddleCodeItem$CodeType
-c0/App.java
- c0.App
-c0/type/Type.java
- c0.type.Type
-c0/parser/SymbolItem.java
- c0.parser.SymbolItem
- c0.parser.SymbolItem$SymbolType
+c0/ast/stmt/StmtNode.java
+ c0.ast.stmt.StmtNode
+c0/JavaCC/SymbolItem.java
+ c0.JavaCC.SymbolItem
+ c0.JavaCC.SymbolItem$SymbolType
+c0/ast/stmt/WhileNode.java
+ c0.ast.stmt.WhileNode
+c0/analyzer/Dumper.java
+ c0.analyzer.Dumper
 c0/entity/SymbolEntry.java
  c0.entity.SymbolEntry
+c0/analyzer/ir/CondJump.java
+ c0.analyzer.ir.CondJump
 c0/parser/ExprParser.java
  c0.parser.ExprParser
+c0/lexer/Main.java
+ c0.lexer.Main
 c0/ast/stmt/IfNode.java
  c0.ast.stmt.IfNode
+c0/lexer/TokenType.java
+ c0.lexer.TokenType
 c0/entity/Function.java
  c0.entity.Function
-c0/entity/StringVariable.java
- c0.entity.StringVariable
 c0/instruction/Operation.java
  c0.instruction.Operation
 c0/analyzer/Visitor.java
  c0.analyzer.Visitor
-c0/parser/Scope.java
- c0.parser.Scope
+c0/lexer/Lexer.java
+ c0.lexer.Lexer
+c0/parser/SymbolItem.java
+ c0.parser.SymbolItem
+ c0.parser.SymbolItem$SymbolType
 c0/parser/Parser.java
  c0.parser.Parser
  c0.parser.Parser$1
-c0/instruction/Instruction.java
- c0.instruction.Instruction
-c0/instruction/FnInstruction.java
- c0.instruction.FnInstruction
+c0/analyzer/ir/Instruction.java
+ c0.analyzer.ir.Instruction
 c0/ast/expr/VariableNode.java
  c0.ast.expr.VariableNode
 c0/analyzer/TypeChecker.java
@@ -106,52 +109,53 @@ c0/ast/stmt/ReturnNode.java
  c0.ast.stmt.ReturnNode
 c0/ast/stmt/BlockNode.java
  c0.ast.stmt.BlockNode
+c0/analyzer/ir/ControlFlow.java
+ c0.analyzer.ir.ControlFlow
 c0/ast/expr/FunctionCallNode.java
  c0.ast.expr.FunctionCallNode
-c0/ast/stmt/EmptyNode.java
- c0.ast.stmt.EmptyNode
-c0/ast/expr/AssignNode.java
- c0.ast.expr.AssignNode
 c0/ast/stmt/ContinueNode.java
  c0.ast.stmt.ContinueNode
 c0/ast/expr/UnaryOpNode.java
  c0.ast.expr.UnaryOpNode
  c0.ast.expr.UnaryOpNode$1
+c0/Executer/Execute.java
+ c0.Executer.Execute
+ c0.Executer.Execute$1
+ c0.Executer.Execute$Dictate
+ c0.Executer.Execute$DictateName
+c0/Analyser/SymbolType.java
+ c0.Analyser.SymbolType
 c0/ast/expr/STLFunctionCallNode.java
  c0.ast.expr.STLFunctionCallNode
-c0/entity/Entity.java
- c0.entity.Entity
+c0/lexer/Token.java
+ c0.lexer.Token
 c0/ast/expr/StringNode.java
  c0.ast.expr.StringNode
-c0/ast/expr/BinaryOpNode.java
- c0.ast.expr.BinaryOpNode
- c0.ast.expr.BinaryOpNode$1
+c0/lexer/Syn.java
+ c0.lexer.Syn
 c0/ast/expr/LiteralNode.java
  c0.ast.expr.LiteralNode
  c0.ast.expr.LiteralNode$1
-c0/ast/stmt/BreakNode.java
- c0.ast.stmt.BreakNode
 c0/analyzer/ir/IRGenerator.java
  c0.analyzer.ir.IRGenerator
  c0.analyzer.ir.IRGenerator$1
 c0/entity/Variable.java
  c0.entity.Variable
  c0.entity.Variable$VariableTypeOp
-c0/ast/expr/CastNode.java
- c0.ast.expr.CastNode
 c0/parser/VariableChecker.java
  c0.parser.VariableChecker
 c0/ast/AST.java
  c0.ast.AST
 c0/ast/expr/ExprNode.java
  c0.ast.expr.ExprNode
-c0/ast/AbstractNode.java
- c0.ast.AbstractNode
-c0/ast/stmt/StmtNode.java
- c0.ast.stmt.StmtNode
+c0/RichIterator.java
+ c0.RichIterator
+c0/lexer/Lex.java
+ c0.lexer.Lex
+ c0.lexer.Lex$charType
+ c0.lexer.Lex$symbol
+ c0.lexer.Lex$wordType
+c0/analyzer/ir/Jumper.java
+ c0.analyzer.ir.Jumper
 c0/ast/stmt/ExprStmtNode.java
  c0.ast.stmt.ExprStmtNode
-c0/ast/stmt/WhileNode.java
- c0.ast.stmt.WhileNode
-c0/analyzer/Dumper.java
- c0.analyzer.Dumper
