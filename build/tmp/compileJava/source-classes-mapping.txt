@@ -1,3 +1,5 @@
+c0/entity/enty/Instruction.java
+ c0.entity.enty.Instruction
 c0/entity/StringVariable.java
  c0.entity.StringVariable
 c0/parser/MiddleCodeItem.java
@@ -45,6 +47,8 @@ c0/error/UnreachableException.java
  c0.error.Error
  c0.error.Error$ErrCode
  c0.error.UnreachableException
+c0/entity/enty/Operator.java
+ c0.entity.enty.Operator
 c0/ast/expr/BinaryOpNode.java
  c0.ast.expr.BinaryOpNode
  c0.ast.expr.BinaryOpNode$1
@@ -90,6 +94,10 @@ c0/instruction/Operation.java
  c0.instruction.Operation
 c0/analyzer/Visitor.java
  c0.analyzer.Visitor
+c0/entity/enty/Constant.java
+ c0.entity.enty.Constant
+ c0.entity.enty.Constant$lexType
+ c0.entity.enty.Constant$nameTable
 c0/lexer/Lexer.java
  c0.lexer.Lexer
 c0/parser/SymbolItem.java
@@ -148,8 +156,12 @@ c0/ast/AST.java
  c0.ast.AST
 c0/ast/expr/ExprNode.java
  c0.ast.expr.ExprNode
+c0/entity/enty/LexReturn.java
+ c0.entity.enty.LexReturn
 c0/RichIterator.java
  c0.RichIterator
+c0/entity/enty/tableStruct.java
+ c0.entity.enty.tableStruct
 c0/lexer/Lex.java
  c0.lexer.Lex
  c0.lexer.Lex$charType
