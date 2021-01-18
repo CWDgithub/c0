@@ -4,7 +4,7 @@ package c0.Executer;
  * 错误处理类
  */
 public class Error extends Exception{
-    public static enum ErrCode{
+    public enum ErrCode{
         ArithmeticException,//算数异常
         InputParamErrException,//输入参数错误
         AskMemoryTooBigException,//申请内存空间太大

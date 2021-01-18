@@ -252,21 +252,21 @@ class Exe {
     private void analyse(int index){
         int t = dictateList.get(index).t;
         int a = dictateList.get(index).a;
-        switch (dictateList.get(index).dic){
-            case LIT : dic_LIT(t,a); break;
-            case LOD : dic_LOD(t,a); break;
-            case STO : dic_STO(t,a); break;
-            case CAL : dic_CAL(t,a); break;
-            case INT : dic_INT(t,a); break;
-            case JMP : dic_JMP(t,a); break;
-            case JPC : dic_JPC(t,a); break;
-            case ADD : dic_ADD(t,a); break;
-            case SUB : dic_SUB(t,a); break;
-            case MUL : dic_MUL(t,a); break;
-            case DIV : dic_DIV(t,a); break;
-            case RED : dic_RED(t,a); break;
-            case WRT : dic_WRT(t,a);  break;
-            case RET : dic_RET(t,a); break;
+        switch (dictateList.get(index).dic) {
+            case LIT -> dic_LIT(t, a);
+            case LOD -> dic_LOD(t, a);
+            case STO -> dic_STO(t, a);
+            case CAL -> dic_CAL(t, a);
+            case INT -> dic_INT(t, a);
+            case JMP -> dic_JMP(t, a);
+            case JPC -> dic_JPC(t, a);
+            case ADD -> dic_ADD(t, a);
+            case SUB -> dic_SUB(t, a);
+            case MUL -> dic_MUL(t, a);
+            case DIV -> dic_DIV(t, a);
+            case RED -> dic_RED(t, a);
+            case WRT -> dic_WRT(t, a);
+            case RET -> dic_RET(t, a);
         }
     }
 
