@@ -2,6 +2,10 @@ package c0.parser;// package com.imudges.C0Compiler.JavaCC;
 /**
  */
 public class SymbolItem {
+    boolean isConstant;
+    boolean isInitialized;
+    int stackOffset;
+
     public SymbolItem(SymbolType type) {
         this.type = type;
         this.name = "";
@@ -29,12 +33,40 @@ public class SymbolItem {
     private int size;
     private int returnType;
 
+    /**
+     * @return the isConstant
+     */
+    public boolean isConstant() {
+        return isConstant;
+    }
+
+    /**
+     * @return the isInitialized
+     */
+    public boolean isInitialized() {
+        return isInitialized;
+    }
+
     public int getReturnType() {
         return returnType;
     }
 
     public void setReturnType(int returnType) {
         this.returnType = returnType;
+    }
+
+    /**
+     * @param isConstant the isConstant to set
+     */
+    public void setConstant(boolean isConstant) {
+        this.isConstant = isConstant;
+    }
+
+    /**
+     * @param isInitialized the isInitialized to set
+     */
+    public void setInitialized(boolean isInitialized) {
+        this.isInitialized = isInitialized;
     }
 
     public String getName() {
@@ -47,6 +79,13 @@ public class SymbolItem {
 
     public SymbolType getType() {
         return type;
+    }
+
+    /**
+     * @return the stackOffset
+     */
+    public int getStackOffset() {
+        return stackOffset;
     }
 
     public void setType(SymbolType type) {
@@ -67,6 +106,13 @@ public class SymbolItem {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    /**
+     * @param stackOffset the stackOffset to set
+     */
+    public void setStackOffset(int stackOffset) {
+        this.stackOffset = stackOffset;
     }
 
     public int getAdr() {

@@ -15,29 +15,6 @@ class ExprParser {
     private final Lexer lexer;
     private final VariableChecker checker;
 
-    /**
-     * OPG
-     * A -> i = A | B    // look ahead 2 token
-     * B -> B < C | B > C | B <= C | B >= C | B == C | B != C | C
-     * C -> C + D | C - D | D
-     * D -> D * E | D / E | E
-     * E -> E as id | F
-     * F -> -F | G
-     * G -> id() | id(H) | I // look ahead 2 token
-     * H -> A, H | A
-     * I -> (A) | id | literal
-     * <p>
-     * a grammar that removing left recursion, parsed by LL(2)
-     * A -> i = A | B
-     * B -> C { < C | > C | <= C | >= C | == C | != C }
-     * C -> D { + D | - D }
-     * D -> E { * E | / E }
-     * E -> F { as id }
-     * F -> -F | G
-     * G -> id() | id(H) | I
-     * H -> A, H | A
-     * I -> (A) | id | literal
-     */
     ExprNode parse() {
         return a();
     }
@@ -59,6 +36,23 @@ class ExprParser {
             }
         }
         return b();
+    }
+
+    /**
+     * stmt
+     */
+    private boolean analyseStmt(TokenType tyTokenType, boolean isWhile , ArrayList<Integer> breakEndPos, int continuePos) {
+        //stmt ->
+        //      expr_stmt
+        //    | decl_stmt
+        //    | if_stmt
+        //    | while_stmt
+        //    | break_stmt
+        //    | continue_stmt
+        //    | return_stmt
+        //    | block_stmt
+        //    | empty_stmt
+        return false;
     }
 
     private ExprNode b() {
@@ -160,6 +154,6 @@ class ExprParser {
             var name = lexer.next().getValue();
             return new VariableNode(name, checker.getVariable(name));
         }
-        throw new RuntimeException("unrecognized Token " + lexer.peek());
+        throw new RuntimeException("wrong Token " + lexer.peek());
     }
 }
