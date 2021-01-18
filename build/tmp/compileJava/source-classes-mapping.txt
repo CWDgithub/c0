@@ -32,6 +32,8 @@ c0/entity/Entity.java
 c0/type/TypeVal.java
  c0.type.TypeVal
 c0/error/UnreachableException.java
+ c0.error.Error
+ c0.error.Error$ErrCode
  c0.error.UnreachableException
 c0/ast/expr/BinaryOpNode.java
  c0.ast.expr.BinaryOpNode
@@ -97,6 +99,11 @@ c0/ast/stmt/ContinueNode.java
 c0/ast/expr/UnaryOpNode.java
  c0.ast.expr.UnaryOpNode
  c0.ast.expr.UnaryOpNode$1
+c0/Executer/Execute.java
+ c0.Executer.Execute
+ c0.Executer.Execute$1
+ c0.Executer.Execute$Dictate
+ c0.Executer.Execute$DictateName
 c0/ast/expr/STLFunctionCallNode.java
  c0.ast.expr.STLFunctionCallNode
 c0/lexer/Token.java
